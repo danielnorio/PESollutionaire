@@ -21,7 +21,7 @@ namespace PESollutionarie
 
             Console.WriteLine("Digite [n] para não baixar títulos e estatísticas ou qualquer outra coisa para baixar:");
             string baixar = Console.ReadLine();
-            if (baixar != "n") {
+            if (baixar != "n" && baixar != "N") {
                 Console.WriteLine("Tentando baixar lista de títulos e estatísticas da Internet....");
                 string html = baixaListaHtml();
                 if (html == "")
@@ -111,27 +111,34 @@ namespace PESollutionarie
             string urlAddress = "https://projecteuler.net/show=all";
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlAddress);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            if (response.StatusCode == HttpStatusCode.OK)
+            try
             {
-                Stream receiveStream = response.GetResponseStream();
-                StreamReader readStream = null;
-
-                if (response.CharacterSet == null)
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    readStream = new StreamReader(receiveStream);
-                }
-                else
-                {
-                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-                }
+                    Stream receiveStream = response.GetResponseStream();
+                    StreamReader readStream = null;
 
-                string data = readStream.ReadToEnd();
+                    if (response.CharacterSet == null)
+                    {
+                        readStream = new StreamReader(receiveStream);
+                    }
+                    else
+                    {
+                        readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                    }
 
-                response.Close();
-                readStream.Close();
-                return data;
+                    string data = readStream.ReadToEnd();
+
+                    response.Close();
+                    readStream.Close();
+                    return data;
+                }
+            }
+            catch (WebException)
+            {
+
             }
             return "";
             

@@ -54,6 +54,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,8 +69,13 @@
     <Compile Include="IProblem.cs" />
     <Compile Include="Problem.cs" />
     <Compile Include="Sollutions\Problem1.cs" />
+    <Compile Include="Sollutions\Problem10.cs" />
+    <Compile Include="Sollutions\Problem11.cs" />
     <Compile Include="Sollutions\Problem12.cs" />
     <Compile Include="Sollutions\Problem13.cs" />
+    <Compile Include="Sollutions\Problem14.cs" />
+    <Compile Include="Sollutions\Problem15.cs" />
+    <Compile Include="Sollutions\Problem16.cs" />
     <Compile Include="Sollutions\Problem2.cs" />
     <Compile Include="Sollutions\Problem3.cs" />
     <Compile Include="Sollutions\Problem4.cs" />

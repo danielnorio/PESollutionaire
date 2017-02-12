@@ -1,96 +1,129 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
 namespace PESollutionarie.Sollutions
 {
-    class Problem13 : IProblem
+    class Problem13 : Problem
     {
-
-        public string Answer()
+        public override string Answer()
         {
-            int triangular, n = 2;
-            // Seleciona cada um dos triangulares
-            while (true)
-            {
-                triangular = n * (n + 1) / 2;
-                //Console.WriteLine("Testando " + n + "º triangular: " + triangular);
-                int numDivisors = numDivisores(triangular);
-                //Console.WriteLine("O " + n + "º triangular tem " + numDivisors + " divisores.");
-                if (numDivisors > 500)
-                {
-                    Console.WriteLine("" + n + "º triangular: " + triangular);
-                    Console.WriteLine("O " + n + "º triangular tem " + numDivisors + " divisores.");
-                    return triangular.ToString();
-                }
-                else n++;
-            }
+            // Since we have 100 50-digit numbers and a long only holds 18 digits more orless, how should we proceed?
+            // Well, take 5-digit numbers for example:
+            // sum of 5-digit <= 99999*100 = 9999900 < 10000000  8 digits
+            // Always all the digits on the far right can contribute only with 2 digits more. 
+            // So we just need all the first 12 digits of each number for compute.
+            // Using some multi-line editing hotkeys in Visual Studio, it's a piece of cake to do this:
+            List<long> numbers = new List<long>();
+            long sum = 0;
+            numbers.Add(371072875339);//02102798797998220837590246510135740250
+            numbers.Add(463769376774);//90009712648124896970078050417018260538
+            numbers.Add(743249861995);//4741059474233309513058123726617309629
+            numbers.Add(919422133635);//4161572522430563301811072406154908250
+            numbers.Add(230675882075);//9346171171980310421047513778063246676
+            numbers.Add(892616706966);//3633820136378418383684178734361726757
+            numbers.Add(281128798128);//9979408065481931592621691275889832738
+            numbers.Add(442742289174);//2520321923589422876796487670272189318
+            numbers.Add(474514457360);//1306439091167216856844588711603153276
+            numbers.Add(703864861058);//3025439939619828917593665686757934951
+            numbers.Add(621764571418);//6560629502157223196586755079324193331
+            numbers.Add(649063524627);//1904929101432445813822663347944758178
+            numbers.Add(925758677183);//7217661963751590579239728245598838407
+            numbers.Add(582035653253);//9399008402633568948830189458628227828
+            numbers.Add(801811993848);//6282014278194139940567587151170094390
+            numbers.Add(353986643728);//7112653829987240784473053190104293586
+            numbers.Add(865155060062);//5864861532075273371959191420517255829
+            numbers.Add(716938887077);//5466499115593487603532921714970056938
+            numbers.Add(543700705768);//6684624621495650076471787294438377604
+            numbers.Add(532826541087);//6828443191190634694037855217779295145
+            numbers.Add(361232725250);//0296071075082563815656710885258350721
+            numbers.Add(458765761724);//0976447339110607218265236877223636045
+            numbers.Add(174237069058);//1860660448207621209813287860733969412
+            numbers.Add(811426604180);//6830619328460811191061556940512689692
+            numbers.Add(519343254517);//8388641918047049293215058642563049483
+            numbers.Add(624672216484);//5076201727918039944693004732956340691
+            numbers.Add(157324443869);//8125794514089057706229429197107928209
+            numbers.Add(550376875256);//8773091862540744969844508330393682126
+            numbers.Add(183363848253);//0154686196124348767681297534375946515
+            numbers.Add(803862875928);//8490201521685554828717201219257766954
+            numbers.Add(781828337579);//3103614740356856449095527097864797581
+            numbers.Add(167263201004);//6897842553539920931837441497806860984
+            numbers.Add(484030981290);//7791799088218795327364475675590848030
+            numbers.Add(870869875513);//2711854517078544161852424320693150332
+            numbers.Add(599594068957);//6536782107074926966537676326235447210
+            numbers.Add(697939506796);//2694742597709739166693763042633987085
+            numbers.Add(410526847082);//9085211399427365734116182760315001271
+            numbers.Add(653786073615);//1080857009149939512557028198746004375
+            numbers.Add(358290353174);//4717326932123578154982629742552737307
+            numbers.Add(949537597651);//5305946966067683156574377167401875275
+            numbers.Add(889028025717);//3229619176668713819931811048770190271
+            numbers.Add(252676802760);//8003013678680992525463401061632866526
+            numbers.Add(362702185404);//7705585629946580636237993140746255962
+            numbers.Add(240744869082);//1174977792365466257246923322810917141
+            numbers.Add(914302881971);//3288597806669760892938638285025333403
+            numbers.Add(344130655780);//6127815921815005561868836468420090470
+            numbers.Add(230530811728);//6430487623791969842487255036638784583
+            numbers.Add(114876969321);//4902810424020138335124462181441773470
+            numbers.Add(637832994906);//6259666498587618221225225512486764533
+            numbers.Add(677201869716);//8544312419572409913959008952310058822
+            numbers.Add(955482553002);//3520781532296796249481641953868218774
+            numbers.Add(760853271322);//5723110424803456124867697064507995236
+            numbers.Add(377742425354);//1291684276865538926205024910326572967
+            numbers.Add(237019132757);//5675285653248258265463092207058596522
+            numbers.Add(297988602722);//8331913126375147341994889534765745501
+            numbers.Add(184957014548);//9288984856827726077713721403798879715
+            numbers.Add(382982037830);//1473527721580348144513491373226651381
+            numbers.Add(348295438291);//9918180278916522431027392251122869539
+            numbers.Add(409579530664);//5232632538044100059654939159879593635
+            numbers.Add(297461521855);//2371307642255121183693803580388584903
+            numbers.Add(416981162220);//2977186158236678424689157993532961922
+            numbers.Add(624679571944);//1269043877107275048102390895523597457
+            numbers.Add(231897067725);//7915061505504953922979530901129967519
+            numbers.Add(861880882258);//5314529584099251203829009407770775672
+            numbers.Add(113067397083);//4724483816533873502340845647058077308
+            numbers.Add(829591747671);//0363198008187129011875491310547126581
+            numbers.Add(976233310448);//8386269515456334926366572897563400500
+            numbers.Add(428462801835);//7070527831839425882145521227251250327
+            numbers.Add(551216035469);//1200581762165212827652751691296897789
+            numbers.Add(322381957343);//9339946437501907836945765883352399886
+            numbers.Add(755061649651);//4775180738168837861091527357929701337
+            numbers.Add(621778427521);//2623401942399639168044983993173312731
+            numbers.Add(329241857071);//7349566916674687634660915035914677504
+            numbers.Add(995186714302);//5219628894890102423325116913619626622
+            numbers.Add(732674608005);//1547471830798392868535206946944540724
+            numbers.Add(768418225246);//4417161514036427982273348055556214818
+            numbers.Add(971426179103);//2598647204516893989422179826088076852
+            numbers.Add(877836461827);//9346313767754307809363333018982642090
+            numbers.Add(108488025216);//4670883215120185883543223812876952786
+            numbers.Add(713296124747);//2464538636993009049310363619763878039
+            numbers.Add(621840735723);//9794223406235393808339651327408011116
+            numbers.Add(666278919814);//8087797941876876144230030984490851411
+            numbers.Add(606618262936);//2836764744779239180335110989069790714
+            numbers.Add(857869440895);//2990653640447425576083659976645795096
+            numbers.Add(660243964099);//5389607120198219976047599490197230297
+            numbers.Add(649139826800);//2973156037120041377903785566085089252
+            numbers.Add(167309393198);//2750275468906903707539413042652315011
+            numbers.Add(948093772450);//8795150954100921645863754710598436791
+            numbers.Add(786391670211);//7492431995700641917969777599028300699
+            numbers.Add(153687137119);//6614952811305876380278410754449733078
+            numbers.Add(407899231155);//5562561142322423255033685442488917353
+            numbers.Add(448899115014);//0648020369068063960672322193204149535
+            numbers.Add(415031288803);//9536053299340368006977710650566631954
+            numbers.Add(812348806732);//0146739058568557934581403627822703280
+            numbers.Add(826165707739);//8327592232845941706525094512325230608
+            numbers.Add(229188020587);//7319719839450180888072429661980811197
+            numbers.Add(771585425020);//6545090413245809786882778948721859617
+            numbers.Add(721078384350);//9186155435662884062257473692284509516
+            numbers.Add(208496039801);//4001723930671666823555245252804609722
+            numbers.Add(535035342264);//2524250874054075591789781264330331690
+            foreach (long number in numbers) sum += number;
+            return sum.ToString().Substring(0, 10);
         }
 
-        public void Solve()
+        public override void Solve()
         {
-            int triangular, n = 2;
-            // Seleciona cada um dos triangulares
-            while (true)
-            {
-                triangular = n * (n + 1) / 2;
-                int numDivisors = numDivisores(triangular);
-                if (numDivisors > 500)
-                    return;
-                else n++;
-            }
-        }
-
-
-        private int numDivisores(int numero)
-        {
-            int numFatores = 1, fator = 2, repeticao = 0;
-            while (numero != 1)
-            {
-                //Se for divisivel decompõe e conta a repetição do fator
-                if (numero % fator == 0)
-                {
-                    repeticao++;
-                    numero /= fator;
-                }
-                else
-                {
-                    if (repeticao > 0)
-                    {
-                        numFatores *= (repeticao + 1);
-                        repeticao = 0;
-                    }
-                    fator++;
-                }
-            }
-            numFatores *= (repeticao + 1);
-            return numFatores;
-        }
-
-        public double Profile()
-        {
-            //Run at highest priority to minimize fluctuations caused by other processes/threads
-            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
-            Thread.CurrentThread.Priority = ThreadPriority.Highest;
-
-            // warm up 
-            Solve();
-
-            var watch = new Stopwatch();
-
-            // clean up
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
-
-            watch.Start();
-            for (int i = 0; i < 20; i++)
-            {
-                Solve();
-            }
-            watch.Stop();
-            Console.WriteLine(" Tempo total de {0} ms para 20 iterações", watch.Elapsed.TotalMilliseconds);
-            return (watch.Elapsed.TotalMilliseconds / 20);
+            Answer();
         }
     }
 }
