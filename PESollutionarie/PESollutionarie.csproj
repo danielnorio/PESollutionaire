@@ -39,7 +39,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -73,6 +73,10 @@
     <Compile Include="Sollutions\Problem3.cs" />
     <Compile Include="Sollutions\Problem4.cs" />
     <Compile Include="Sollutions\Problem5.cs" />
+    <Compile Include="Sollutions\Problem6.cs" />
+    <Compile Include="Sollutions\Problem7.cs" />
+    <Compile Include="Sollutions\Problem8.cs" />
+    <Compile Include="Sollutions\Problem9.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

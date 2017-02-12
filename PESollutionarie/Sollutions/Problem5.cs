@@ -61,6 +61,8 @@ namespace PESollutionarie.Sollutions
         {
             if (n == 2) return true;
             else if (n % 2 == 0) return false;
+            if (n == 2) return true;
+            else if (n % 2 == 0) return false;
             int max = Convert.ToInt32(Math.Sqrt(n));
             if (max % 2 == 0)
                 max--;
